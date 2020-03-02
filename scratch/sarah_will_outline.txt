@@ -1,0 +1,31 @@
+Sarah and Will
+
+1.	Intro
+2.	Rules
+	a.	Combine presenter and audience pieces into each rule
+	b.	10 Rules
+		i.	Establish a code of conduct
+		ii.	Pick a problem
+		iii.	Define the scope
+			1.	Goals
+		iv.	Setup
+			1.	Format (groups, amount of talking vs group work, etc.)
+			2.	Are there things to download?
+		v.	Make it accessible
+		vi.	Preparation
+			1.	Presenter:
+				a.	Decide on presentation
+				b.	Create presentation
+				c.	Make examples if needed
+				d.	Send it out in advance
+			2.	Audience:
+				a.	Review the materials before
+				b.	Download things you need
+		vii.	Be engaging
+			1.	Have open dialog
+			2.	Have examples
+			3.	Paired programming
+		viii.	Be a leader
+		ix.	Conclude
+		x.	Reflection
+3.	Conclusion
