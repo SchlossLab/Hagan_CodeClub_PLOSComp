@@ -50,7 +50,7 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -84,6 +84,11 @@
 \usepackage{lineno}
 
 \usepackage{pdfpages}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{cslreferences}%
+  {}%
+  {\par}
 
 \author{}
 \date{\vspace{-2.5em}}
@@ -126,8 +131,8 @@ For most biologists, the ability to generate data has outpaced the
 ability to analyze those data. High throughput data comes to us from DNA
 and RNA sequencing, flow cytometry, metabolomics, molecular screens, and
 more. Although some accept the approach of compartmentalizing the
-ability to generate data and analyze data, we have found scientists feel
-empowered when they have the ability to both ask and answer their own
+ability to generate data and the ability analyze data, we have found
+scientists feel empowered when they can both ask and answer their own
 biological questions. Yet, the standard undergraduate and graduate
 training in the biological sciences is insufficient to develop the data
 analysis skills needed to analyze one's data. In our experience
@@ -421,6 +426,7 @@ by\ldots{}
 \subsection{References}\label{references}}
 
 \hypertarget{refs}{}
+\begin{cslreferences}
 \leavevmode\hypertarget{ref-Lonsdale2016}{}%
 1. Lonsdale A, Penington JS, Rice T, Walker M, Dashnow H. Ten simple
 rules for a bioinformatics journal club. Lewitter F, editor. PLOS
@@ -461,6 +467,7 @@ doi:\href{https://doi.org/10.1371/journal.pcbi.1000424}{10.1371/journal.pcbi.100
 \leavevmode\hypertarget{ref-Bockeler_2020}{}%
 8. Böckeler B, Siessegger N. On pair programming. 2020. Available:
 \url{https://martinfowler.com/articles/on-pair-programming.html}
+\end{cslreferences}
 
 \newpage
 
