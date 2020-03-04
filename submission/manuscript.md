@@ -127,7 +127,7 @@ All co-authors have been participants in the Code Clubs run as part of PDS's lab
 | **Title**             | **Description**                                    |
 | ----------------- | ---------------------------------------------- |
 | base vs. ggplot   | Given input data and a figure, recreate the figure using R's base graphics or ggplot syntax   |
-| Snakemake         | Given a bash script that contains an analysis pipeline, convert it to a series of recipes (can also be done with GNU Make) |
+| Snakemake         | Given a bash script that contains an analysis pipeline, convert it to a Snakemake workflow (can also be done with GNU Make) |
 | DRYing code       | Given script with repeated code, create functions to remove repetition   |
 | mothur and Vegan	| Given a pairwise community dissimilarity matrix, compare communities using the `adonis` function in the Vegan R package  |
 | tidy data         | Given a wide-formatted data table, convert it to a long, tidy-formatted data table using tools from R's tidyverse  |
