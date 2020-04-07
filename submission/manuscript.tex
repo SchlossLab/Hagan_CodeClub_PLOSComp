@@ -1,36 +1,55 @@
-\documentclass[11pt,]{article}
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  11pt,
+]{article}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-\else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
-\usepackage[unicode=true]{hyperref}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1.0in]{geometry}
 \usepackage{longtable,booktabs}
-% Fix footnotes in tables (requires footnote package)
-\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -40,31 +59,14 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% set default figure placement to htbp
+% Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{helvet} % Helvetica font
 \renewcommand*\familydefault{\sfdefault} % Use the sans serif version of the font
 
@@ -88,17 +90,17 @@
 
 \begin{document}
 
-\vspace{10mm}
+\vspace*{5mm}
 
+\hypertarget{ten-simple-rules-to-increase-computational-skills-among-biologists-with-code-clubs}{%
 \section{Ten Simple Rules to increase computational skills among
 biologists with Code
-Clubs}\label{ten-simple-rules-to-increase-computational-skills-among-biologists-with-code-clubs}
+Clubs}\label{ten-simple-rules-to-increase-computational-skills-among-biologists-with-code-clubs}}
 
-\vspace{35mm}
+\vspace{25mm}
 
-Ada K. Hagan\({^2}\), Nick Lesniak, \emph{Author names here, order TBD}
-
-Patrick D. Schloss\({^1}\)\({^\dagger}\)
+Ada K. Hagan\({^2}\), Nick Lesniak, \emph{Author names here, order
+alphabetical}, Patrick D. Schloss\({^1}\)\({^\dagger}\)
 
 \vspace{40mm}
 
@@ -112,13 +114,14 @@ Ann Arbor, MI 48109
 
 \vspace{35mm}
 
-\subsubsection{Ten Simple Rules}\label{ten-simple-rules}
+\hypertarget{ten-simple-rules}{%
+\subsubsection{Ten Simple Rules}\label{ten-simple-rules}}
 
 \newpage
-
 \linenumbers
 
-\subsection{Introduction}\label{introduction}
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
 
 For most biologists, the ability to generate data has outpaced the
 ability to analyze those data. High throughput data comes to us from DNA
@@ -191,20 +194,26 @@ approach each pair took. Our Code Clubs typically have 7 to 10
 participants, but the inherent ``think-pair-share'' strategy should
 allow it to be scaled to larger groups {[}3{]}.
 
-We continue to experiment with approaches to running Code Club, but have
-learned that it is critical for the presenter to clearly articulate
-their goals and facilitate participant engagement. Although any
-individual Code Club session may be more experimental than another, on
-the whole they are a critical tool to train bench scientists in
-reproducible data analysis practices. We have provided some examples of
-successful code club topics in Table 1 and summarized the results of our
-own experimentation as Code Club presenters and participants into Ten
-Rules. The first 3 rules apply to all participants at every Code Club,
-while Rules 4 through 8 are targeted to Code Club presenters and the
-last two for participants.
+We continue to experiment with approaches to running Code Club. During
+the period of the Covid-19 pandemic in 2020 when many research labs were
+shuttered, PDS started hosting weekly Code Club virtually. Participants
+could engage the material posted to
+\url{https://www.riffomonas.org/code_club/} via a Zoom meeting or
+asynchronously using the recorded sessions available on YouTube.
+Regardless of our approach to leading a Code Club, we have learned that
+it is critical for the presenter to clearly articulate their goals and
+facilitate participant engagement. Although any individual Code Club
+session may be more experimental than another, on the whole they are a
+critical tool to train bench scientists in reproducible data analysis
+practices. We have provided some examples of successful code club topics
+in Table 1. We have summarized the results of our own experimentation as
+Code Club presenters and participants into Ten Rules. The first 3 rules
+apply to all participants at every Code Club, while Rules 4 through 8
+are targeted to Code Club presenters and the last two for participants.
 
+\hypertarget{rule-1-reciprocate-respect}{%
 \subsection{Rule 1: Reciprocate
-respect}\label{rule-1-reciprocate-respect}
+respect}\label{rule-1-reciprocate-respect}}
 
 It is critical that the presenter and participants respect each other
 and that a designated individual (e.g.~the lab director) enforces a code
@@ -212,7 +221,7 @@ of conduct (see X for an example). Each member of the Code Club must
 have the humility to acknowledge that they have more to learn about any
 given topic. We have found that many problems are avoided when the
 presenter takes charge of the session with a clear lesson plan,
-thoughtful group creation, and constructive encouragement. Similarly,
+thoughtfully creating groups, and giving encouragement. Similarly,
 participants foster a positive environment by remembering that the task
 is not a competition, focusing on the presenter's goals, allowing their
 partner to contribute, asking clarifying questions when appropriate, and
@@ -222,20 +231,22 @@ and nonconstructive criticism. All parties in a Code Club are
 responsible for preventing this toxicity by demonstrating respect for
 themselves and their colleagues.
 
+\hypertarget{rule-2-let-the-material-change-you}{%
 \subsection{Rule 2: Let the material change
-you}\label{rule-2-let-the-material-change-you}
+you}\label{rule-2-let-the-material-change-you}}
 
 Part of the humility required to participate in a Code Club is
 acknowledging that your training is incomplete and that it is possible
 for you to learn something new. For participants, assume that the
 presenter has a plan and follow their presented approach. After the Code
 Club, try to incorporate that material into new code or refactor old
-code. By practicing the material in a different context you will learn
+code. By practicing the material in a different context, you will learn
 the material better. For presenters, incorporate suggested changes into
 your code. Either party may identify concepts that they are unsure of,
 presenting opportunities for further conversation and learning.
 
-\subsection{Rule 3: Experiment!}\label{rule-3-experiment}
+\hypertarget{rule-3-experiment}{%
+\subsection{Rule 3: Experiment!}\label{rule-3-experiment}}
 
 The selection of content and structure for each Code Club is democratic
 and distributed. If someone thinks a technique is worth learning and
@@ -250,7 +261,9 @@ provide a refresher to others. The group should also feel free to
 experiment with the format and incorporate group feedback by ending with
 a debrief discussing the pros and cons of new formats.
 
-\subsection{Rule 4: Set specific goals}\label{rule-4-set-specific-goals}
+\hypertarget{rule-4-set-specific-goals}{%
+\subsection{Rule 4: Set specific
+goals}\label{rule-4-set-specific-goals}}
 
 In our early Code Clubs we noticed that if the presenter did not clearly
 state their goals for the session, it often led to frustration for both
@@ -272,7 +285,8 @@ function, implementing function, refactoring function). Accomplishing
 specific goals is more likely to result in a positive outcome for
 presenters and participants.
 
-\subsection{Rule 5: Keep it simple}\label{rule-5-keep-it-simple}
+\hypertarget{rule-5-keep-it-simple}{%
+\subsection{Rule 5: Keep it simple}\label{rule-5-keep-it-simple}}
 
 Our Code Club needs to fit within an hour time slot. When considering
 their Code Club activity, the presenter should plan for an introduction
@@ -288,8 +302,9 @@ installed the interpreter. Some tips to help keep it simple are to limit
 the presented code chunks to less than 50 or, conversely, consider the
 number of lines that might be required to accomplish a solution.
 
+\hypertarget{rule-6-give-participants-time-to-prepare}{%
 \subsection{Rule 6: Give participants time to
-prepare}\label{rule-6-give-participants-time-to-prepare}
+prepare}\label{rule-6-give-participants-time-to-prepare}}
 
 Similar to a Journal Club, the presenter should give participants a few
 days (ideally a week) to prepare for the Code Club. Considering the
@@ -308,8 +323,9 @@ sharing via email. Whatever method is used, the presenter should be sure
 to communicate the topic and necessary materials with the participants
 ahead of time.
 
+\hypertarget{rule-7-dont-give-participants-busy-work}{%
 \subsection{Rule 7: Don't give participants busy
-work}\label{rule-7-dont-give-participants-busy-work}
+work}\label{rule-7-dont-give-participants-busy-work}}
 
 Participants want to learn topics that will either be useful to them or
 help their colleague (i.e., the presenter). Presenters should do their
@@ -322,8 +338,9 @@ incorporating the suggestions. A list of packages or tasks that group
 members are interested in could help an uninspired presenter choose a
 topic that will make a rewarding Code Club.
 
+\hypertarget{rule-8-include-all-levels-of-participants}{%
 \subsection{Rule 8: Include all levels of
-participants}\label{rule-8-include-all-levels-of-participants}
+participants}\label{rule-8-include-all-levels-of-participants}}
 
 As suggested by Rule 7, a significant challenge to presenting at Code
 Club is selecting topics and activities that appeal to a critical mass
@@ -336,9 +353,9 @@ challenges presented by participants at varying skill levels. Instead of
 letting participants form their own pairs, the presenter can select
 pairs of participants with either similar or differing skill levels,
 depending on their goals. Partnerships between those with similar skill
-levels requires the presenter to design appropriate activites each skill
-level. We have found that commenting code is a good skill for beginners
-since it forces them to dissect and understand a code chunk
+levels requires the presenter to design appropriate activities each
+skill level. We have found that commenting code is a good skill for
+beginners since it forces them to dissect and understand a code chunk
 line-by-line. An advantage of partnerships with disparate skill levels
 is assigning a single task, which provides the presenter with a diverse
 range of methods that achieve the same result. This approach to pairing
@@ -352,8 +369,9 @@ Intentionally forming pairs can also engineer group interactions by
 breaking up cliques, avoiding potentially disruptive partnerships, or
 pairing reliable role models with new group members.
 
+\hypertarget{rule-9-prepare-in-advance-to-maximize-participation}{%
 \subsection{Rule 9: Prepare in advance to maximize
-participation}\label{rule-9-prepare-in-advance-to-maximize-participation}
+participation}\label{rule-9-prepare-in-advance-to-maximize-participation}}
 
 It is not possible to fully participate in a Journal Club discussion
 about a paper that the participant has not read. In that context, coming
@@ -363,11 +381,12 @@ lack of respect and preparation. Just as a presenter must follow Rule 6
 to provide materials ahead of time, participants must review the code in
 advance, download the data sets, install the necessary packages, and
 perhaps read up on the topic. If the Code Club is based on a paper or
-chapters in a data science book (e.g., {[}6--8{]}) the participants
+chapters in a data science book (e.g., {[}6--8{]}), the participants
 should read them before the session and consider how they might
 incorporate the concepts into their own work.
 
-\subsection{Rule 10: Participate}\label{rule-10-participate}
+\hypertarget{rule-10-participate}{%
+\subsection{Rule 10: Participate}\label{rule-10-participate}}
 
 An essential ingredient of any Code Club is active participation from
 all parties. Having an open laptop on the table and permission to use it
@@ -376,20 +395,21 @@ browsing the internet; fight that urge and focus on the presenter's
 goals. Be respectful and allow your partner to contribute. Speak up for
 yourself and force your partner to let you contribute. If the material
 seems too advanced for you, it can be frustrating, and tempting to
-mentally check out. Fortuntately, programming languages like R and
-Python are generally expressive, which should allow you to engage with
-the logic, even if the syntax is too advanced. Frankly, understanding
-the logic of when to use one modeling approach over another is more
-important than how to use it. If you understand the ``why'', the ``how''
-will quickly follow. More experienced participants should aim to
-communicate feedback and coding suggestions at a level that all
-participants can understand and engage in. Regardless of skill levels,
-your partner and the presenter put themselves at risk by revealing what
-they do or do not know. Encourage them, and show your gratitude for
-helping you learn something new, by fully participating in each Code
-Club.
+mentally check out. Fortunately, programming languages like R and Python
+are generally expressive, which should allow you to engage with the
+logic, even if the syntax is too advanced. Frankly, understanding the
+logic of \emph{when} to use one modeling approach over another is more
+important than knowing \emph{how} to use it. If you understand the
+``why'', the ``how'' will quickly follow. More experienced participants
+should aim to communicate feedback and coding suggestions at a level
+that all participants can understand and engage in. Regardless of skill
+levels, your partner and the presenter put themselves in a vulnerable
+position by revealing what they do or do not know. Encourage them, and
+show your gratitude for helping you learn something new, by fully
+participating in each Code Club.
 
-\subsection{Conclusion}\label{conclusion}
+\hypertarget{conclusion}{%
+\subsection{Conclusion}\label{conclusion}}
 
 The most important rules are the first and last. Members of the Code
 Club need to feel comfortable with other group members and sufficiently
@@ -410,56 +430,59 @@ Code Club has improved the overall data analysis skills, community, and
 research success of our lab by empowering researchers to seek help from
 their colleagues.
 
-\subsection{Acknowledgements}\label{acknowledgements}
+\hypertarget{acknowledgements}{%
+\subsection{Acknowledgements}\label{acknowledgements}}
 
 All co-authors have been participants in the Code Clubs run as part of
 PDS's lab meetings. They have had a critical role in shaping the
 evolution of the sessions. AKH led a lab discussion of Code Clubs to
 identify the key concepts presented, which were supplemented by
-contributions from NL. The order of co-authors was determined by\ldots{}
+contributions from NL. The order of other co-authors is listed
+alphabetically.
 
 \newpage
 
-\subsection{References}\label{references}
+\hypertarget{references}{%
+\subsection{References}\label{references}}
 
 \hypertarget{refs}{}
-\hypertarget{ref-Lonsdale2016}{}
+\leavevmode\hypertarget{ref-Lonsdale2016}{}%
 1. Lonsdale A, Penington JS, Rice T, Walker M, Dashnow H. Ten simple
 rules for a bioinformatics journal club. Lewitter F, editor. PLOS
 Computational Biology. 2016;12: e1004526.
 doi:\href{https://doi.org/10.1371/journal.pcbi.1004526}{10.1371/journal.pcbi.1004526}
 
-\hypertarget{ref-Wilson2014}{}
+\leavevmode\hypertarget{ref-Wilson2014}{}%
 2. Wilson G, Aruliah DA, Brown CT, Hong NPC, Davis M, Guy RT, et al.
 Best practices for scientific computing. Eisen JA, editor. PLoS Biology.
 2014;12: e1001745.
 doi:\href{https://doi.org/10.1371/journal.pbio.1001745}{10.1371/journal.pbio.1001745}
 
-\hypertarget{ref-Kothiyal2014}{}
+\leavevmode\hypertarget{ref-Kothiyal2014}{}%
 3. Kothiyal A, Murthy S, Iyer S. Think-pair-share in a large CS1 class.
 Proceedings of the 2014 conference on innovation \& technology in
 computer science education - ITiCSE 14. ACM Press; 2014.
 doi:\href{https://doi.org/10.1145/2591708.2591739}{10.1145/2591708.2591739}
 
-\hypertarget{ref-StackOverflow_MREE}{}
+\leavevmode\hypertarget{ref-StackOverflow_MREE}{}%
 4. Stack Overflow. How to create a minimal, reproducible example. 2020.
 Available:
 \url{https://stackoverflow.com/help/minimal-reproducible-example}
 
-\hypertarget{ref-Bockeler_2020}{}
+\leavevmode\hypertarget{ref-Bockeler_2020}{}%
 5. Böckeler B, Siessegger N. On pair programming. 2020. Available:
 \url{https://martinfowler.com/articles/on-pair-programming.html}
 
-\hypertarget{ref-Wickham_2016}{}
+\leavevmode\hypertarget{ref-Wickham_2016}{}%
 6. Wickham H, Grolemund G. O'Reilly Media; 2016. Available:
 \url{https://r4ds.had.co.nz}
 
-\hypertarget{ref-Schloss_2018}{}
+\leavevmode\hypertarget{ref-Schloss_2018}{}%
 7. Schloss PD. The riffomonas reproducible research tutorial series.
 Journal of Open Source Education. 2018;1: 13.
 doi:\href{https://doi.org/10.21105/jose.00013}{10.21105/jose.00013}
 
-\hypertarget{ref-Noble2009}{}
+\leavevmode\hypertarget{ref-Noble2009}{}%
 8. Noble WS. A quick guide to organizing computational biology projects.
 Lewitter F, editor. PLoS Computational Biology. 2009;5: e1000424.
 doi:\href{https://doi.org/10.1371/journal.pcbi.1000424}{10.1371/journal.pcbi.1000424}
@@ -470,55 +493,61 @@ doi:\href{https://doi.org/10.1371/journal.pcbi.1000424}{10.1371/journal.pcbi.100
 
 \begin{longtable}[]{@{}ll@{}}
 \toprule
-\begin{minipage}[b]{0.24\columnwidth}\raggedright\strut
+\begin{minipage}[b]{0.25\columnwidth}\raggedright
 \textbf{Title}\strut
-\end{minipage} & \begin{minipage}[b]{0.61\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[b]{0.69\columnwidth}\raggedright
 \textbf{Description}\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
-\begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\begin{minipage}[t]{0.25\columnwidth}\raggedright
 base vs.~ggplot\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.69\columnwidth}\raggedright
 Given input data and a figure, recreate the figure using R's base
 graphics or ggplot syntax\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\begin{minipage}[t]{0.25\columnwidth}\raggedright
 Snakemake\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.69\columnwidth}\raggedright
 Given a bash script that contains an analysis pipeline, convert it to a
-series of recipes (can also be done with GNU Make)\strut
+Snakemake workflow (can also be done with GNU Make)\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\begin{minipage}[t]{0.25\columnwidth}\raggedright
 DRYing code\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.69\columnwidth}\raggedright
 Given script with repeated code, create functions to remove
 repetition\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\begin{minipage}[t]{0.25\columnwidth}\raggedright
 mothur and Vegan\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.69\columnwidth}\raggedright
 Given a pairwise community dissimilarity matrix, compare communities
 using the \texttt{adonis} function in the Vegan R package\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\begin{minipage}[t]{0.25\columnwidth}\raggedright
 tidy data\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.69\columnwidth}\raggedright
 Given a wide-formatted data table, convert it to a long, tidy-formatted
 data table using tools from R's tidyverse\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\begin{minipage}[t]{0.25\columnwidth}\raggedright
 GitFlow\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.69\columnwidth}\raggedright
 Participants file and claim an issue to add their name to a README file
 in a GitHub-hosted repository and file a pull request to complete the
 issue\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
-Integrating R and Google docs\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright\strut
+\begin{minipage}[t]{0.25\columnwidth}\raggedright
+R with Google docs\strut
+\end{minipage} & \begin{minipage}[t]{0.69\columnwidth}\raggedright
 Scrape a Google docs workbook and clean the data to identify previous
 Code Club presenters\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\raggedright
+Develop an R Package\strut
+\end{minipage} & \begin{minipage}[t]{0.69\columnwidth}\raggedright
+Convert a lab member's collection of scripts into package over a series
+of sessions\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
