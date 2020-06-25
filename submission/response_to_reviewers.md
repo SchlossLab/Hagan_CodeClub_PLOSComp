@@ -4,7 +4,7 @@
 
 **I find the proposed code clubs an interesting idea and would be interested in trying this out in the lab. However, quite a bit more practical advice from this manuscript would be helpful to get up and running. Practical advice can be in the form of things that worked, but also explicitly mentioning what didn't work so that others can learn from the authors experience.**
 
-> Thank you for the feedback on where the manuscript could provide more context. Throughout their review, the reviewer encourages us to make more comments about groups where there are more people with CS backgrounds. Admittedly, our lab is made of researchers with non-CS backgrounds and so our implementation of Code Clubs is with that audience in mind. We have added text as appropriate to respond to the following suggestions.
+> Thank you for the feedback on where the manuscript could provide more context. Throughout their review, the reviewer encourages us to make more comments about groups where there are more people with CS backgrounds. Admittedly, our lab is mostly made of researchers with non-CS backgrounds and so our implementation of Code Clubs is with that audience in mind. We have added text as appropriate to respond to the following suggestions. We have expanded our listing of example code clubs in Table 1 along with links to GitHub repositories where they were used. Examples of Code Clubs that did not work are highlighted throughout the manuscript (e.g. teaching Julia or not clearly stating goals).
 
 
 **Some suggestions:**
